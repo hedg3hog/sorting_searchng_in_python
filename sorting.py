@@ -47,3 +47,73 @@ def sorted_merge(left:list, right:list):
     print("merged",left, right, "to", merged)
     return merged
 
+def heapify__(arr):
+    n = len(arr)
+    #print("n:", n)
+    i = n // 2 -1
+    if n == 2:
+        i = 0
+        if arr[i] < arr[i+1]:
+            arr[i] ,arr[i+1] = arr[i+1], arr[i]
+
+    while i >= 0:
+        #print(i)
+        if arr[i] < arr[i+1]:
+            arr[i] ,arr[i+1] = arr[i+1], arr[i]
+            i = i+1
+        if n-i > 2 and arr[i] < arr[i+2]:
+            arr[i] ,arr[i+2] = arr[i+2], arr[i]
+            i = i + 1
+        
+        if i > n - 2:
+            i =  n//2 -1
+        else:
+            i -= 1
+
+    print(arr)
+    return arr
+
+
+def heapify(arr):
+    arr = list(arr)
+    n = len(arr)
+    i = n//2 -1
+    if n == 2:
+        if arr[i] < arr[i+1]:
+            return arr[::-1]
+        return arr
+    for i in range(i,-1,-1):
+        if 2 * i + 1 < n and arr[i] < arr[2 * i + 1]:
+            if 2 * i + 2 < n and arr[2*i + 1] < arr [2 * i + 2]:
+                arr[i], arr[2 * i + 2] = arr[2 * i + 2], arr[i]
+                #i = 2 * i + 2
+
+                
+            else:
+                arr[i], arr[2 * i + 1] = arr[2 * i + 1], arr[i]
+                #i = 2 * i + 1
+                
+        elif 2 * i + 2 < n and arr[i] < arr [2 * i + 2]:
+            arr[i], arr[2 * i + 2] = arr[2 * i + 2], arr[i]
+            #i = 2 * i + 2
+            
+
+        #i -=1
+    print(arr)
+    return arr
+
+def heap_sort(arr):
+    arr = list(arr)
+    s = list()
+    for i in range(len(arr)):
+        #print(arr)
+        arr = heapify(arr)
+        s.append(arr.pop(0))
+    #s.append(arr.pop(0))
+    if len(arr) > 0:
+        arr.insert(0,arr.pop())
+    return s[::-1]
+
+        
+        
+        
