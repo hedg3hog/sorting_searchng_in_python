@@ -2,9 +2,9 @@ import enum
 import imp
 from time import sleep
 
-from numpy import append
 
 def quick_sort(liste:list):
+    liste = list(liste)
     if len(liste) < 2:
         return liste
 
@@ -17,11 +17,11 @@ def quick_sort(liste:list):
         else:
             k.append(i)
     print(k,p,g)
-    print()
-    sleep(1)
+    sleep(0.15)
     return quick_sort(k)+ [p,] + quick_sort(g)
     
 def merge_sort(liste:list):
+    liste = list(liste)
     if len(liste) > 2:
         #print("sorting",liste[:len(liste)//2],liste[len(liste)//2:])
         return sorted_merge(merge_sort(liste[:len(liste)//2]),merge_sort(liste[len(liste)//2:]))
@@ -45,6 +45,7 @@ def sorted_merge(left:list, right:list):
     merged += left[i:] 
     merged += right[j:]
     print("merged",left, right, "to", merged)
+    sleep(0.15)
     return merged
 
 def heapify__(arr):
@@ -100,6 +101,7 @@ def heapify(arr):
 
         #i -=1
     print(arr)
+    sleep(0.15)
     return arr
 
 def heap_sort(arr):
@@ -117,3 +119,17 @@ def heap_sort(arr):
         
         
         
+def bubble_sort(arr):
+    arr = list(arr)
+    change = True
+    while change == True:
+        change = False
+        for i in range(len(arr)-1):
+            if arr[i] > arr[i+1]:
+                arr[i],arr[i+1] = arr[i+1],arr[i]
+                print("changed",arr[i+1],arr[i],">>>",arr[i],arr[i+1])
+                change = True
+            else:
+                print("made no change to",arr[i],arr[i+1])
+            sleep(0.15)
+    return arr
